@@ -408,3 +408,98 @@ openDiary.addEventListener("click",()=>{
     },900);
 
 });
+
+/*=========================================
+        HOME PAGE TRANSITION
+=========================================*/
+
+const homePage = document.getElementById("homePage");
+
+openDiary.addEventListener("click", () => {
+
+    const diaryFront =
+    document.querySelector(".diaryFront");
+
+    diaryFront.classList.add("open");
+
+    setTimeout(() => {
+
+        diaryCover.style.opacity = "0";
+
+    },900);
+
+    setTimeout(() => {
+
+        diaryCover.style.display = "none";
+
+        homePage.style.display = "block";
+
+        requestAnimationFrame(()=>{
+
+            homePage.style.opacity="1";
+
+        });
+
+    },1400);
+
+});
+
+/*=========================================
+        MENU CARD EFFECT
+=========================================*/
+
+document.querySelectorAll(".menuCard")
+
+.forEach(card=>{
+
+card.addEventListener("mouseenter",()=>{
+
+card.animate([
+
+{
+transform:"translateY(0px)"
+},
+
+{
+transform:"translateY(-8px)"
+}
+
+],{
+
+duration:250,
+
+fill:"forwards"
+
+});
+
+});
+
+});
+
+/*=========================================
+        PREMIUM ENTRANCE
+=========================================*/
+
+window.setTimeout(()=>{
+
+document.querySelectorAll(".menuCard")
+
+.forEach((card,index)=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(35px)";
+
+setTimeout(()=>{
+
+card.style.transition=".6s ease";
+
+card.style.opacity="1";
+
+card.style.transform="translateY(0px)";
+
+},index*120);
+
+});
+
+},200);
