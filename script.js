@@ -1793,3 +1793,161 @@ card.style.background=
 });
 
 });
+/*=========================================
+            BOARDS PAGE
+=========================================*/
+
+const boardsPage =
+document.getElementById("boardsPage");
+
+const boardsBack =
+document.getElementById("boardsBack");
+
+const boardsButton =
+document.querySelector('[data-page="boards"]');
+
+/*========== OPEN BOARDS ==========*/
+
+if(boardsButton){
+
+boardsButton.addEventListener("click",()=>{
+
+homePage.style.opacity="0";
+
+homePage.style.transform="scale(.98)";
+
+setTimeout(()=>{
+
+homePage.style.display="none";
+
+boardsPage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+boardsPage.style.opacity="1";
+
+boardsPage.style.transform="translateY(0)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== BACK HOME ==========*/
+
+if(boardsBack){
+
+boardsBack.addEventListener("click",()=>{
+
+boardsPage.style.opacity="0";
+
+boardsPage.style.transform="translateY(20px)";
+
+setTimeout(()=>{
+
+boardsPage.style.display="none";
+
+homePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+homePage.style.opacity="1";
+
+homePage.style.transform="scale(1)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== CARD ANIMATION ==========*/
+
+const boardsCard =
+document.querySelector(".boardsCard");
+
+if(boardsCard){
+
+boardsCard.style.opacity="0";
+
+boardsCard.style.transform="translateY(50px)";
+
+boardsCard.style.transition=".8s ease";
+
+const boardsObserver =
+new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+boardsCard.style.opacity="1";
+
+boardsCard.style.transform="translateY(0)";
+
+}
+
+});
+
+},{threshold:.2});
+
+boardsObserver.observe(boardsCard);
+
+}
+
+/*========== SPARKLES ==========*/
+
+function createSparkle(){
+
+const sparkle=document.createElement("div");
+
+sparkle.innerHTML="✨";
+
+sparkle.style.position="fixed";
+
+sparkle.style.left=Math.random()*100+"vw";
+
+sparkle.style.top=Math.random()*100+"vh";
+
+sparkle.style.fontSize=(12+Math.random()*12)+"px";
+
+sparkle.style.pointerEvents="none";
+
+sparkle.style.opacity=".8";
+
+sparkle.style.transition="2s linear";
+
+sparkle.style.zIndex="999";
+
+document.body.appendChild(sparkle);
+
+requestAnimationFrame(()=>{
+
+sparkle.style.transform="translateY(-40px) scale(1.6)";
+
+sparkle.style.opacity="0";
+
+});
+
+setTimeout(()=>{
+
+sparkle.remove();
+
+},2000);
+
+}
+
+setInterval(()=>{
+
+if(boardsPage.style.display==="block"){
+
+createSparkle();
+
+}
+
+},700);
