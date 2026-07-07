@@ -3935,3 +3935,174 @@ opacity:.5;
 }
 
    }
+/*=========================================
+          MOBILE RESPONSIVE FIX
+=========================================*/
+
+@media(max-width:768px){
+
+
+.pageHeader h1{
+
+font-size:38px;
+
+}
+
+
+.pageHeader p{
+
+font-size:15px;
+
+padding:0 15px;
+
+}
+
+
+/* Cards */
+
+.adoreGrid,
+.memoryGrid,
+.galleryGrid,
+.futureContainer{
+
+grid-template-columns:1fr;
+
+gap:22px;
+
+}
+
+
+.adoreCard,
+.memoryCard,
+.futureCard,
+.boardsCard{
+
+padding:25px;
+
+border-radius:24px;
+
+}
+
+
+.adoreCard h2,
+.memoryCard h2,
+.futureCard h2{
+
+font-size:24px;
+
+}
+
+
+.adoreCard p,
+.memoryCard p,
+.futureCard p,
+.boardsCard p{
+
+font-size:14px;
+
+line-height:1.8;
+
+}
+
+
+/* Gallery */
+
+.photoCard img{
+
+height:300px;
+
+}
+
+
+/* Letter */
+
+.letterPaper{
+
+padding:30px 22px;
+
+border-radius:22px;
+
+}
+
+
+.letterPaper h1{
+
+font-size:32px;
+
+}
+
+
+.letterText{
+
+font-size:15px;
+
+line-height:1.9;
+
+}
+
+
+.letterEnding{
+
+font-size:19px;
+
+}
+
+
+/* Final Page */
+
+.finalWrapper h1{
+
+font-size:40px;
+
+}
+
+
+.finalText{
+
+font-size:16px;
+
+line-height:2;
+
+}
+
+
+.finalQuote{
+
+font-size:18px;
+
+padding:22px;
+
+}
+
+
+/* Music Button */
+
+#musicToggle{
+
+width:55px;
+
+height:55px;
+
+bottom:20px;
+
+right:20px;
+
+}
+
+
+/* Buttons */
+
+#futureBack,
+#boardsBack,
+#galleryBack,
+#momentsBack,
+#letterHome,
+#restartDiary,
+#finalHome{
+
+padding:14px 32px;
+
+}
+
+
+}
