@@ -1594,3 +1594,202 @@ createPetal();
 }
 
 },1200);
+/*=========================================
+            FUTURE PAGE
+=========================================*/
+
+const futurePage =
+document.getElementById("futurePage");
+
+const futureBack =
+document.getElementById("futureBack");
+
+const futureButton =
+document.querySelector('[data-page="future"]');
+
+/*========== OPEN FUTURE ==========*/
+
+if(futureButton){
+
+futureButton.addEventListener("click",()=>{
+
+homePage.style.opacity="0";
+
+homePage.style.transform="scale(.98)";
+
+setTimeout(()=>{
+
+homePage.style.display="none";
+
+futurePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+futurePage.style.opacity="1";
+
+futurePage.style.transform="translateY(0)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== BACK HOME ==========*/
+
+if(futureBack){
+
+futureBack.addEventListener("click",()=>{
+
+futurePage.style.opacity="0";
+
+futurePage.style.transform="translateY(20px)";
+
+setTimeout(()=>{
+
+futurePage.style.display="none";
+
+homePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+homePage.style.opacity="1";
+
+homePage.style.transform="scale(1)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== CARD ANIMATION ==========*/
+
+const futureCards =
+document.querySelectorAll(".futureCard");
+
+const futureObserver =
+new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0) scale(1)";
+
+}
+
+});
+
+},{
+threshold:.15
+});
+
+futureCards.forEach((card,index)=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(60px) scale(.96)";
+
+card.style.transition=".8s ease";
+
+card.style.transitionDelay=(index*.15)+"s";
+
+futureObserver.observe(card);
+
+});
+
+/*========== SHOOTING STARS ==========*/
+
+function createStar(){
+
+const star =
+document.createElement("div");
+
+star.style.position="fixed";
+
+star.style.top=Math.random()*40+"vh";
+
+star.style.left="-60px";
+
+star.style.width="3px";
+
+star.style.height="3px";
+
+star.style.borderRadius="50%";
+
+star.style.background="#ffffff";
+
+star.style.boxShadow="0 0 12px #ffffff";
+
+star.style.pointerEvents="none";
+
+star.style.zIndex="999";
+
+star.style.transition="2.5s linear";
+
+document.body.appendChild(star);
+
+requestAnimationFrame(()=>{
+
+star.style.transform=
+
+`translate(${window.innerWidth+120}px,220px)`;
+
+star.style.opacity="0";
+
+});
+
+setTimeout(()=>{
+
+star.remove();
+
+},2500);
+
+}
+
+setInterval(()=>{
+
+if(futurePage.style.display==="block"){
+
+createStar();
+
+}
+
+},1800);
+
+/*========== HOVER GLOW ==========*/
+
+futureCards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+card.style.background=
+
+`radial-gradient(circle at ${x}px ${y}px,
+rgba(79,209,197,.22),
+rgba(255,255,255,.06) 70%)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.background=
+
+"linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.04))";
+
+});
+
+});
