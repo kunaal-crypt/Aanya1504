@@ -810,3 +810,146 @@ card.style.boxShadow="";
 });
 
 });
+
+/*=========================================
+      THINGS I ADORE NAVIGATION
+=========================================*/
+
+const adorePage =
+document.getElementById("adorePage");
+
+const adoreBack =
+document.getElementById("adoreBack");
+
+const adoreButton =
+document.querySelector('[data-page="adore"]');
+
+if(adoreButton){
+
+adoreButton.addEventListener("click",()=>{
+
+homePage.style.opacity="0";
+
+homePage.style.transform="scale(.98)";
+
+setTimeout(()=>{
+
+homePage.style.display="none";
+
+adorePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+adorePage.style.opacity="1";
+
+});
+
+},500);
+
+});
+
+}
+
+if(adoreBack){
+
+adoreBack.addEventListener("click",()=>{
+
+adorePage.style.opacity="0";
+
+setTimeout(()=>{
+
+adorePage.style.display="none";
+
+homePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+homePage.style.opacity="1";
+
+homePage.style.transform="scale(1)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*=========================================
+      ADORE CARD ENTRANCE
+=========================================*/
+
+const adoreCards =
+document.querySelectorAll(".adoreCard");
+
+const adoreObserver =
+new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0) scale(1)";
+
+}
+
+});
+
+},{
+threshold:.15
+});
+
+adoreCards.forEach((card,index)=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(50px) scale(.96)";
+
+card.style.transition=
+".7s ease";
+
+card.style.transitionDelay=
+(index*.12)+"s";
+
+adoreObserver.observe(card);
+
+});
+
+/*=========================================
+      SOFT HOVER GLOW
+=========================================*/
+
+adoreCards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect =
+card.getBoundingClientRect();
+
+const x =
+e.clientX-rect.left;
+
+const y =
+e.clientY-rect.top;
+
+card.style.background =
+
+`radial-gradient(
+circle at ${x}px ${y}px,
+rgba(79,209,197,.18),
+rgba(255,255,255,.08) 70%)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.background=
+
+"rgba(255,255,255,.08)";
+
+});
+
+});
