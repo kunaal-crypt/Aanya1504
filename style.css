@@ -1651,3 +1651,206 @@ transform:translateY(-5px);
 box-shadow:0 18px 35px rgba(79,209,197,.35);
 
 }
+/*=========================================
+        PREMIUM MENU CARD EFFECTS
+=========================================*/
+
+.menuCard{
+
+position:relative;
+
+overflow:hidden;
+
+isolation:isolate;
+
+}
+
+.menuCard::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.08),
+transparent,
+rgba(79,209,197,.08)
+);
+
+opacity:0;
+
+transition:.5s;
+
+z-index:-1;
+
+}
+
+.menuCard:hover::before{
+
+opacity:1;
+
+}
+
+.menuCard::after{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+
+left:-50%;
+
+width:70px;
+
+height:320%;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.28),
+transparent
+);
+
+transform:rotate(25deg);
+
+transition:1s;
+
+}
+
+.menuCard:hover::after{
+
+left:170%;
+
+}
+
+.menuCard span{
+
+transition:.4s;
+
+}
+
+.menuCard:hover span{
+
+transform:scale(1.18) rotate(-8deg);
+
+display:inline-block;
+
+}
+
+.menuCard h3{
+
+transition:.35s;
+
+}
+
+.menuCard:hover h3{
+
+color:#4FD1C5;
+
+}
+
+.menuCard p{
+
+transition:.35s;
+
+}
+
+.menuCard:hover p{
+
+opacity:1;
+
+}
+
+.cardGrid{
+
+padding-bottom:50px;
+
+}
+
+/* Floating animation */
+
+@keyframes floatCard{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-6px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+.menuCard:nth-child(1){
+
+animation:floatCard 5s ease-in-out infinite;
+
+}
+
+.menuCard:nth-child(2){
+
+animation:floatCard 6s ease-in-out infinite;
+
+}
+
+.menuCard:nth-child(3){
+
+animation:floatCard 7s ease-in-out infinite;
+
+}
+
+.menuCard:nth-child(4){
+
+animation:floatCard 5.5s ease-in-out infinite;
+
+}
+
+.menuCard:nth-child(5){
+
+animation:floatCard 6.5s ease-in-out infinite;
+
+}
+
+.menuCard:nth-child(6){
+
+animation:floatCard 7.5s ease-in-out infinite;
+
+}
+
+/* Apple-style blur */
+
+.menuCard{
+
+backdrop-filter:blur(28px);
+
+-webkit-backdrop-filter:blur(28px);
+
+}
+
+/* Luxury glow */
+
+.menuCard:hover{
+
+box-shadow:
+
+0 25px 60px rgba(79,209,197,.22),
+
+0 0 35px rgba(255,255,255,.05);
+
+}
