@@ -1951,3 +1951,61 @@ createSparkle();
 }
 
 },700);
+
+/*=========================================
+            MUSIC PLAYER
+=========================================*/
+
+const bgMusic =
+document.getElementById("bgMusic");
+
+const musicToggle =
+document.getElementById("musicToggle");
+
+let musicPlaying = false;
+
+musicToggle.addEventListener("click",()=>{
+
+if(musicPlaying){
+
+bgMusic.pause();
+
+musicToggle.classList.remove("playing");
+
+musicToggle.innerHTML="🎵";
+
+}else{
+
+bgMusic.play();
+
+musicToggle.classList.add("playing");
+
+musicToggle.innerHTML="🎶";
+
+}
+
+musicPlaying=!musicPlaying;
+
+});
+
+/* Auto-play attempt after first user interaction */
+
+document.addEventListener("click",function startMusic(){
+
+if(!musicPlaying){
+
+bgMusic.play().then(()=>{
+
+musicPlaying=true;
+
+musicToggle.classList.add("playing");
+
+musicToggle.innerHTML="🎶";
+
+}).catch(()=>{});
+
+}
+
+document.removeEventListener("click",startMusic);
+
+},{once:true});
