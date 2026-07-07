@@ -1398,3 +1398,199 @@ card.style.background="rgba(255,255,255,.08)";
 });
 
 });
+/*=========================================
+          LOVE LETTER PAGE
+=========================================*/
+
+const letterPage2 =
+document.getElementById("letterPage2");
+
+const letterHome =
+document.getElementById("letterHome");
+
+const nextLetter =
+document.getElementById("nextLetter");
+
+const letterButton =
+document.querySelector('[data-page="letter"]');
+
+/*========== OPEN LETTER ==========*/
+
+if(letterButton){
+
+letterButton.addEventListener("click",()=>{
+
+homePage.style.opacity="0";
+
+homePage.style.transform="scale(.98)";
+
+setTimeout(()=>{
+
+homePage.style.display="none";
+
+letterPage2.style.display="block";
+
+requestAnimationFrame(()=>{
+
+letterPage2.style.opacity="1";
+
+letterPage2.style.transform="translateY(0)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== BACK HOME ==========*/
+
+if(letterHome){
+
+letterHome.addEventListener("click",()=>{
+
+letterPage2.style.opacity="0";
+
+letterPage2.style.transform="translateY(20px)";
+
+setTimeout(()=>{
+
+letterPage2.style.display="none";
+
+homePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+homePage.style.opacity="1";
+
+homePage.style.transform="scale(1)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== TYPEWRITER ==========*/
+
+const letterText =
+document.querySelector(".letterText");
+
+if(letterText){
+
+const fullText =
+letterText.innerHTML;
+
+letterText.innerHTML="";
+
+let index=0;
+
+function typeLetter(){
+
+if(index<fullText.length){
+
+letterText.innerHTML+=fullText.charAt(index);
+
+index++;
+
+setTimeout(typeLetter,16);
+
+}
+
+}
+
+if(letterButton){
+
+letterButton.addEventListener("click",()=>{
+
+setTimeout(()=>{
+
+letterText.innerHTML="";
+
+index=0;
+
+typeLetter();
+
+},650);
+
+});
+
+}
+
+}
+
+/*========== NEXT BUTTON ==========*/
+
+if(nextLetter){
+
+nextLetter.addEventListener("click",()=>{
+
+alert(
+"❤️ More pages are coming soon..."
+);
+
+});
+
+}
+
+/*========== FLOATING PETALS ==========*/
+
+function createPetal(){
+
+const petal =
+document.createElement("div");
+
+petal.innerHTML="🌸";
+
+petal.style.position="fixed";
+
+petal.style.left=
+Math.random()*100+"vw";
+
+petal.style.top="-30px";
+
+petal.style.fontSize=
+(16+Math.random()*12)+"px";
+
+petal.style.pointerEvents="none";
+
+petal.style.opacity=".8";
+
+petal.style.transition="7s linear";
+
+petal.style.zIndex="999";
+
+document.body.appendChild(petal);
+
+requestAnimationFrame(()=>{
+
+petal.style.transform=
+
+`translateY(120vh)
+translateX(${Math.random()*120-60}px)
+rotate(${Math.random()*360}deg)`;
+
+petal.style.opacity="0";
+
+});
+
+setTimeout(()=>{
+
+petal.remove();
+
+},7000);
+
+}
+
+setInterval(()=>{
+
+if(letterPage2.style.display==="block"){
+
+createPetal();
+
+}
+
+},1200);
