@@ -360,3 +360,51 @@ document.querySelectorAll("button")
 
 // Focus input automatically
 passwordInput.focus();
+/*=========================================
+            DIARY TRANSITION
+=========================================*/
+
+const diaryCover = document.getElementById("diaryCover");
+const openDiary = document.getElementById("openDiary");
+
+function unlockDiary(){
+
+    unlockBtn.innerHTML = "Unlocked 💚";
+
+    unlockBtn.disabled = true;
+
+    setTimeout(()=>{
+
+        passwordSection.classList.add("fadeOut");
+
+        setTimeout(()=>{
+
+            passwordSection.style.display="none";
+
+            diaryCover.style.display="flex";
+
+            requestAnimationFrame(()=>{
+
+                diaryCover.style.opacity="1";
+
+            });
+
+        },700);
+
+    },500);
+
+}
+
+openDiary.addEventListener("click",()=>{
+
+    openDiary.innerHTML="Opening... 📖";
+
+    openDiary.disabled=true;
+
+    setTimeout(()=>{
+
+        alert("Home Page will be added in Part 2.");
+
+    },900);
+
+});
