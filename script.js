@@ -281,3 +281,82 @@ duration:250
 });
 
 });
+/*=========================================
+            PART 1C.2
+=========================================*/
+
+// Smooth cursor animation
+let mouseX = 0;
+let mouseY = 0;
+let glowX = 0;
+let glowY = 0;
+
+document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateGlow() {
+    glowX += (mouseX - glowX) * 0.15;
+    glowY += (mouseY - glowY) * 0.15;
+
+    cursorGlow.style.left = glowX + "px";
+    cursorGlow.style.top = glowY + "px";
+
+    requestAnimationFrame(animateGlow);
+}
+
+animateGlow();
+
+// Random loading messages
+const loadingMessages = [
+    "Collecting stars...",
+    "Writing memories...",
+    "Preparing the diary...",
+    "Gathering little moments...",
+    "Almost ready..."
+];
+
+const loadingText =
+document.querySelector(".loadingText");
+
+let msg = 0;
+
+const loadingInterval = setInterval(() => {
+
+    msg++;
+
+    if(msg >= loadingMessages.length){
+
+        clearInterval(loadingInterval);
+
+        return;
+
+    }
+
+    loadingText.textContent =
+    loadingMessages[msg];
+
+},800);
+
+// Button hover glow
+document.querySelectorAll("button")
+.forEach(btn=>{
+
+    btn.addEventListener("mouseenter",()=>{
+
+        btn.style.boxShadow =
+        "0 0 30px rgba(79,209,197,.45)";
+
+    });
+
+    btn.addEventListener("mouseleave",()=>{
+
+        btn.style.boxShadow="";
+
+    });
+
+});
+
+// Focus input automatically
+passwordInput.focus();
