@@ -1137,3 +1137,130 @@ transition:.9s;
 left:150%;
 
 }
+/*=========================================
+            HOME PAGE
+=========================================*/
+
+#homePage{
+
+position:absolute;
+
+inset:0;
+
+display:none;
+
+padding:35px 22px;
+
+overflow-y:auto;
+
+background:transparent;
+
+opacity:0;
+
+transition:1s ease;
+
+}
+
+.homeHeader{
+
+text-align:center;
+
+margin-bottom:35px;
+
+}
+
+.homeHeader h1{
+
+font-family:'Great Vibes',cursive;
+
+font-size:64px;
+
+margin-bottom:10px;
+
+color:white;
+
+}
+
+.homeHeader p{
+
+font-size:15px;
+
+opacity:.82;
+
+line-height:1.8;
+
+}
+
+.cardGrid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+
+gap:18px;
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.menuCard{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(24px);
+
+border:1px solid rgba(255,255,255,.12);
+
+border-radius:24px;
+
+padding:25px;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+}
+
+.menuCard:hover{
+
+transform:translateY(-8px) scale(1.03);
+
+border-color:rgba(79,209,197,.45);
+
+box-shadow:0 20px 50px rgba(79,209,197,.18);
+
+}
+
+.menuCard span{
+
+font-size:34px;
+
+display:block;
+
+margin-bottom:12px;
+
+}
+
+.menuCard h3{
+
+font-size:18px;
+
+margin-bottom:8px;
+
+font-weight:600;
+
+}
+
+.menuCard p{
+
+font-size:13px;
+
+opacity:.75;
+
+line-height:1.6;
+
+}
