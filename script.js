@@ -589,3 +589,96 @@ card.style.transition=".7s ease";
 observer.observe(card);
 
 });
+
+/*=========================================
+        LETTER PAGE NAVIGATION
+=========================================*/
+
+const letterPage = document.getElementById("letterPage");
+const letterBack = document.getElementById("letterBack");
+
+document.querySelector('[data-page="letter"]')
+.addEventListener("click", () => {
+
+    homePage.style.opacity = "0";
+
+    setTimeout(() => {
+
+        homePage.style.display = "none";
+
+        letterPage.style.display = "block";
+
+        requestAnimationFrame(() => {
+
+            letterPage.style.opacity = "1";
+
+        });
+
+    }, 500);
+
+});
+
+letterBack.addEventListener("click", () => {
+
+    letterPage.style.opacity = "0";
+
+    setTimeout(() => {
+
+        letterPage.style.display = "none";
+
+        homePage.style.display = "block";
+
+        requestAnimationFrame(() => {
+
+            homePage.style.opacity = "1";
+
+        });
+
+    }, 500);
+
+});
+
+/*=========================================
+      TYPEWRITER EFFECT
+=========================================*/
+
+const letterContent =
+document.getElementById("letterContent");
+
+const fullLetter =
+letterContent.innerHTML;
+
+letterContent.innerHTML = "";
+
+let letterPlayed = false;
+
+function startLetterAnimation(){
+
+    if(letterPlayed) return;
+
+    letterPlayed = true;
+
+    let i = 0;
+
+    const typing = setInterval(() => {
+
+        letterContent.innerHTML += fullLetter.charAt(i);
+
+        i++;
+
+        if(i >= fullLetter.length){
+
+            clearInterval(typing);
+
+        }
+
+    },18);
+
+}
+
+document.querySelector('[data-page="letter"]')
+.addEventListener("click", () => {
+
+    setTimeout(startLetterAnimation,700);
+
+});
