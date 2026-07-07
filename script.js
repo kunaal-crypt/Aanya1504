@@ -2186,3 +2186,24 @@ finalObserver.observe(finalText);
 
 
 }
+/*=========================================
+            LOADER
+=========================================*/
+
+const loader =
+document.getElementById("loader");
+
+
+window.addEventListener("load",()=>{
+
+
+setTimeout(()=>{
+
+
+loader.classList.add("loaderHide");
+
+
+},1800);
+
+
+});
