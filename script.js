@@ -682,3 +682,131 @@ document.querySelector('[data-page="letter"]')
     setTimeout(startLetterAnimation,700);
 
 });
+
+/*=========================================
+      PREMIUM HOME INTERACTIONS V2
+=========================================*/
+
+// Ripple Effect
+document.querySelectorAll(".menuCard").forEach(card=>{
+
+card.addEventListener("click",(e)=>{
+
+const ripple=document.createElement("span");
+
+const rect=card.getBoundingClientRect();
+
+const size=Math.max(rect.width,rect.height);
+
+ripple.style.width=size+"px";
+ripple.style.height=size+"px";
+
+ripple.style.left=(e.clientX-rect.left-size/2)+"px";
+ripple.style.top=(e.clientY-rect.top-size/2)+"px";
+
+ripple.className="ripple";
+
+card.appendChild(ripple);
+
+setTimeout(()=>{
+
+ripple.remove();
+
+},700);
+
+});
+
+});
+
+// Floating animation delay
+
+document.querySelectorAll(".menuCard")
+
+.forEach((card,index)=>{
+
+card.style.animationDelay=(index*0.18)+"s";
+
+});
+
+// Luxury Tilt Effect
+
+document.querySelectorAll(".menuCard")
+
+.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+const rotateY=((x/rect.width)-0.5)*12;
+
+const rotateX=((y/rect.height)-0.5)*-12;
+
+card.style.transform=
+
+`perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+translateY(-8px)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="";
+
+});
+
+});
+
+// Fade Cards One by One
+
+window.addEventListener("load",()=>{
+
+const cards=document.querySelectorAll(".menuCard");
+
+cards.forEach((card,index)=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(30px)";
+
+setTimeout(()=>{
+
+card.style.transition=".6s ease";
+
+card.style.opacity="1";
+
+card.style.transform="translateY(0)";
+
+},150*index);
+
+});
+
+});
+
+// Luxury Click Glow
+
+document.querySelectorAll(".menuCard")
+
+.forEach(card=>{
+
+card.addEventListener("mousedown",()=>{
+
+card.style.boxShadow=
+
+"0 0 50px rgba(79,209,197,.45)";
+
+});
+
+card.addEventListener("mouseup",()=>{
+
+card.style.boxShadow="";
+
+});
+
+});
