@@ -953,3 +953,227 @@ card.style.background=
 });
 
 });
+
+/*=========================================
+        CUTE MOMENTS PAGE
+=========================================*/
+
+const momentsPage =
+document.getElementById("momentsPage");
+
+const momentsBack =
+document.getElementById("momentsBack");
+
+const momentsButton =
+document.querySelector('[data-page="moments"]');
+
+/*========== OPEN PAGE ==========*/
+
+if(momentsButton){
+
+momentsButton.addEventListener("click",()=>{
+
+homePage.style.opacity="0";
+
+homePage.style.transform="scale(.98)";
+
+setTimeout(()=>{
+
+homePage.style.display="none";
+
+momentsPage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+momentsPage.style.opacity="1";
+
+momentsPage.style.transform="translateY(0)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== BACK HOME ==========*/
+
+if(momentsBack){
+
+momentsBack.addEventListener("click",()=>{
+
+momentsPage.style.opacity="0";
+
+momentsPage.style.transform="translateY(20px)";
+
+setTimeout(()=>{
+
+momentsPage.style.display="none";
+
+homePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+homePage.style.opacity="1";
+
+homePage.style.transform="scale(1)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== CARD ENTRANCE ==========*/
+
+const memoryCards =
+document.querySelectorAll(".memoryCard");
+
+const memoryObserver =
+new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0) scale(1)";
+
+}
+
+});
+
+},{
+threshold:.15
+});
+
+memoryCards.forEach((card,index)=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(60px) scale(.95)";
+
+card.style.transition=".75s ease";
+
+card.style.transitionDelay=
+(index*0.12)+"s";
+
+memoryObserver.observe(card);
+
+});
+
+/*========== PARALLAX GLOW ==========*/
+
+memoryCards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect =
+card.getBoundingClientRect();
+
+const x =
+e.clientX-rect.left;
+
+const y =
+e.clientY-rect.top;
+
+card.style.background=
+
+`radial-gradient(
+circle at ${x}px ${y}px,
+rgba(79,209,197,.22),
+rgba(255,255,255,.08) 70%)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.background=
+
+"linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.05))";
+
+});
+
+});
+
+/*========== FLOATING HEARTS ==========*/
+
+function createHeart(){
+
+const heart =
+document.createElement("div");
+
+heart.innerHTML="💚";
+
+heart.style.position="fixed";
+
+heart.style.left=
+Math.random()*100+"vw";
+
+heart.style.bottom="-30px";
+
+heart.style.fontSize=
+(14+Math.random()*18)+"px";
+
+heart.style.opacity=".7";
+
+heart.style.pointerEvents="none";
+
+heart.style.zIndex="999";
+
+heart.style.transition="6s linear";
+
+document.body.appendChild(heart);
+
+requestAnimationFrame(()=>{
+
+heart.style.transform=
+
+`translateY(-120vh)
+translateX(${(Math.random()*120)-60}px)
+rotate(${Math.random()*360}deg)`;
+
+heart.style.opacity="0";
+
+});
+
+setTimeout(()=>{
+
+heart.remove();
+
+},6000);
+
+}
+
+setInterval(()=>{
+
+if(momentsPage.style.display==="block"){
+
+createHeart();
+
+}
+
+},900);
+
+/*========== BUTTON PRESS ==========*/
+
+document.querySelectorAll("#momentsBack")
+.forEach(btn=>{
+
+btn.addEventListener("mousedown",()=>{
+
+btn.style.transform="scale(.96)";
+
+});
+
+btn.addEventListener("mouseup",()=>{
+
+btn.style.transform="scale(1)";
+
+});
+
+});
