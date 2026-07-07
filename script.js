@@ -503,3 +503,89 @@ card.style.transform="translateY(0px)";
 });
 
 },200);
+
+/*=========================================
+        JOURNEY PAGE NAVIGATION
+=========================================*/
+
+const journeyPage = document.getElementById("journeyPage");
+const backHome = document.getElementById("backHome");
+
+document.querySelector('[data-page="journey"]')
+.addEventListener("click",()=>{
+
+    homePage.style.opacity="0";
+
+    setTimeout(()=>{
+
+        homePage.style.display="none";
+
+        journeyPage.style.display="block";
+
+        requestAnimationFrame(()=>{
+
+            journeyPage.style.opacity="1";
+
+        });
+
+    },500);
+
+});
+
+backHome.addEventListener("click",()=>{
+
+    journeyPage.style.opacity="0";
+
+    setTimeout(()=>{
+
+        journeyPage.style.display="none";
+
+        homePage.style.display="block";
+
+        requestAnimationFrame(()=>{
+
+            homePage.style.opacity="1";
+
+        });
+
+    },500);
+
+});
+
+/*=========================================
+        TIMELINE CARD ANIMATION
+=========================================*/
+
+const timelineCards =
+document.querySelectorAll(".timelineCard");
+
+const observer =
+new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
+}
+
+});
+
+},{
+threshold:0.2
+});
+
+timelineCards.forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(40px)";
+
+card.style.transition=".7s ease";
+
+observer.observe(card);
+
+});
