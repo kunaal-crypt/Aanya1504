@@ -1177,3 +1177,224 @@ btn.style.transform="scale(1)";
 });
 
 });
+/*=========================================
+        PREMIUM GALLERY
+=========================================*/
+
+const galleryPage =
+document.getElementById("galleryPage");
+
+const galleryBack =
+document.getElementById("galleryBack");
+
+const galleryButton =
+document.querySelector('[data-page="gallery"]');
+
+const lightbox =
+document.getElementById("lightbox");
+
+const lightboxImage =
+document.getElementById("lightboxImage");
+
+const closeLightbox =
+document.getElementById("closeLightbox");
+
+/*========== OPEN GALLERY ==========*/
+
+if(galleryButton){
+
+galleryButton.addEventListener("click",()=>{
+
+homePage.style.opacity="0";
+
+homePage.style.transform="scale(.98)";
+
+setTimeout(()=>{
+
+homePage.style.display="none";
+
+galleryPage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+galleryPage.style.opacity="1";
+
+galleryPage.style.transform="translateY(0)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== BACK HOME ==========*/
+
+if(galleryBack){
+
+galleryBack.addEventListener("click",()=>{
+
+galleryPage.style.opacity="0";
+
+galleryPage.style.transform="translateY(20px)";
+
+setTimeout(()=>{
+
+galleryPage.style.display="none";
+
+homePage.style.display="block";
+
+requestAnimationFrame(()=>{
+
+homePage.style.opacity="1";
+
+homePage.style.transform="scale(1)";
+
+});
+
+},500);
+
+});
+
+}
+
+/*========== LIGHTBOX ==========*/
+
+document.querySelectorAll(".photoCard img")
+
+.forEach(image=>{
+
+image.addEventListener("click",()=>{
+
+lightbox.style.display="flex";
+
+requestAnimationFrame(()=>{
+
+lightbox.style.opacity="1";
+
+});
+
+lightboxImage.src=image.src;
+
+});
+
+});
+
+if(closeLightbox){
+
+closeLightbox.addEventListener("click",()=>{
+
+lightbox.style.opacity="0";
+
+setTimeout(()=>{
+
+lightbox.style.display="none";
+
+},350);
+
+});
+
+}
+
+/*========== CLICK OUTSIDE ==========*/
+
+lightbox.addEventListener("click",(e)=>{
+
+if(e.target===lightbox){
+
+lightbox.style.opacity="0";
+
+setTimeout(()=>{
+
+lightbox.style.display="none";
+
+},350);
+
+}
+
+});
+
+/*========== ESC KEY ==========*/
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="Escape"){
+
+lightbox.style.opacity="0";
+
+setTimeout(()=>{
+
+lightbox.style.display="none";
+
+},350);
+
+}
+
+});
+
+/*========== PHOTO ENTRANCE ==========*/
+
+const photos =
+document.querySelectorAll(".photoCard");
+
+const galleryObserver =
+new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0) scale(1)";
+
+}
+
+});
+
+},{
+threshold:.15
+});
+
+photos.forEach((photo,index)=>{
+
+photo.style.opacity="0";
+
+photo.style.transform="translateY(60px) scale(.95)";
+
+photo.style.transition=".75s ease";
+
+photo.style.transitionDelay=(index*.12)+"s";
+
+galleryObserver.observe(photo);
+
+});
+
+/*========== IMAGE GLOW ==========*/
+
+photos.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+card.style.background=
+
+`radial-gradient(circle at ${x}px ${y}px,
+rgba(79,209,197,.22),
+rgba(255,255,255,.08) 70%)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.background="rgba(255,255,255,.08)";
+
+});
+
+});
